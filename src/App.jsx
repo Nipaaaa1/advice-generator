@@ -1,10 +1,33 @@
 import dividerDesktop from "/images/pattern-divider-desktop.svg";
 import dividerMobile from "/images/pattern-divider-mobile.svg";
 import iconDice from "/images/icon-dice.svg";
+import { motion } from "framer-motion";
 import { useState } from "react";
 
+const slideUp = {
+  initial: {
+    y: 50,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 1,
+      delayChildren: 0.5,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
 const App = () => {
-  const [data, setData] = useState({ data: [] });
+  const [data, setData] = useState({
+    slip: {
+      id: "117",
+      advice:
+        "It is easy to sit up and take notice, what's difficult is getting up and taking action.",
+    },
+  });
 
   const handleClick = async () => {
     try {
@@ -24,14 +47,30 @@ const App = () => {
     }
   };
   return (
-    <main className="bg-darkBlue font-monrope flex h-svh w-full items-center justify-center">
-      <div className="bg-darkGrayishBlue relative flex h-auto w-3/4 flex-col items-center gap-4 rounded-xl p-6 md:w-1/4 md:gap-8">
-        <h2 className="text-neonGreen tracking-advice text-xs md:text-sm">
-          ADVICE #{data.slip.id}
-        </h2>
-        <h1 className="text-lightCyan text-center text-xl font-bold md:text-2xl">
-          {data.slip.advice}
-        </h1>
+    <motion.main className="bg-darkBlue font-monrope flex h-svh w-full items-center justify-center">
+      <motion.div
+        layout
+        variants={slideUp}
+        initial="initial"
+        animate="animate"
+        className="bg-darkGrayishBlue relative flex h-auto w-3/4 flex-col items-center gap-4 rounded-xl p-6 md:w-1/4 md:gap-8"
+      >
+        {data && (
+          <>
+            <motion.h2
+              variants={slideUp}
+              className="text-neonGreen tracking-advice text-xs md:text-sm"
+            >
+              ADVICE #{data.slip.id}
+            </motion.h2>
+            <motion.h1
+              variants={slideUp}
+              className="text-lightCyan text-center text-xl font-bold md:text-2xl"
+            >
+              {data.slip.advice}
+            </motion.h1>
+          </>
+        )}
         <img
           className="mb-8 hidden h-max w-full md:block"
           src={dividerDesktop}
@@ -52,8 +91,8 @@ const App = () => {
             alt="Dice Icon"
           />
         </button>
-      </div>
-    </main>
+      </motion.div>
+    </motion.main>
   );
 };
 
