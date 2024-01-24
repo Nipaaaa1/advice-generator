@@ -22,7 +22,7 @@ const App = () => {
           src={dividerMobile}
           alt="Divider Mobile"
         />
-        <div className="bg-neonGreen absolute -bottom-8 size-16 cursor-pointer rounded-full p-5">
+        <div className="bg-neonGreen hover:shadow-neonGreen/50 hover:shadow-button absolute -bottom-8 size-16 cursor-pointer rounded-full p-5 transition ease-in-out">
           <img
             className="h-max w-20 cursor-pointer"
             src={iconDice}

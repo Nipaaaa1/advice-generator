@@ -16,6 +16,9 @@ export default {
       letterSpacing: {
         advice: "0.2rem",
       },
+      boxShadow: {
+        button: "0 0 1rem 0.5rem hsl(150, 100%, 66%)",
+      },
     },
   },
   plugins: [],
